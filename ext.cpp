@@ -23,8 +23,8 @@ namespace fractbx {
     static size_t iterations(std::complex<double> c)
     {
       std::complex<double> z = 0;
-      size_t jmax = 256;
-      for (size_t j = 0; j < 256; j++) {
+      size_t jmax = 2048;
+      for (size_t j = 0; j < jmax; j++) {
         z = z * z + c;
         if (std::abs(z) > 2) {
           return j;

@@ -3,12 +3,13 @@ from __future__ import division, print_function
 def go():
   from scitbx.array_family import flex
   from fractbx import make_flex
-  image = make_flex(1001).as_numpy_array()
-  import matplotlib
-  matplotlib.use('Agg')
-  from matplotlib import pyplot
-  pyplot.imshow(image, cmap='hot')
-  pyplot.savefig('mandel.png', dpi=1000)
+  import numpy
+  i0 = make_flex(4001)
+  i1 = (255. / flex.max(i0)) * i0.as_double()
+  image = (i1.iround()).as_numpy_array()
+  from PIL import Image
+  image = Image.fromarray(numpy.uint8(image))
+  image.save('mandel.png')
 
 if __name__ == '__main__':
   go()
